@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jack B. — E-Commerce Growth Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f5f0;
+    --accent: #ff4d00;
+    --muted: #888;
+    --card: #141414;
+    --border: #222;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--accent); color: var(--white); border: none;
+    padding: 0.6rem 1.4rem; font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 0.8rem; letter-spacing: 0.05em;
+    text-transform: uppercase; cursor: pointer; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 4rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,77,0,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,77,0,0.1); border: 1px solid rgba(255,77,0,0.3);
+    color: var(--accent); font-size: 0.75rem; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 0.4rem 1rem; margin-bottom: 2rem;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    max-width: 800px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { color: var(--accent); font-style: normal; }
+  .hero p {
+    font-size: 1.1rem; color: var(--muted);
+    max-width: 480px; margin-bottom: 3rem; line-height: 1.7;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: var(--white);
+    padding: 1rem 2.5rem; font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    transition: opacity 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost {
+    border: 1px solid var(--border); color: var(--muted);
+    padding: 1rem 2.5rem; font-family: 'Syne', sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.2s; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+
+  .hero-stats {
+    display: flex; gap: 4rem; margin-top: 5rem;
+    padding-top: 3rem; border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif; font-size: 2.5rem;
+    font-weight: 800; color: var(--white);
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* ── SERVICES ── */
+  section { padding: 6rem 4rem; }
+  .section-tag {
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.03em;
+    margin-bottom: 1rem; line-height: 1.1;
+  }
+  .section-sub { color: var(--muted); max-width: 500px; margin-bottom: 4rem; line-height: 1.7; }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px; background: var(--border);
+  }
+  .service-card {
+    background: var(--black); padding: 3rem 2.5rem;
+    transition: background 0.2s; position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--accent); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { background: var(--card); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon { font-size: 2rem; margin-bottom: 1.5rem; }
+  .service-name {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.2rem; margin-bottom: 0.8rem;
+  }
+  .service-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 2rem; }
+  .service-price {
+    font-family: 'Syne', sans-serif; font-size: 1.5rem;
+    font-weight: 800; color: var(--white);
+  }
+  .service-price small { font-size: 0.8rem; font-weight: 400; color: var(--muted); margin-left: 0.4rem; }
+  .service-features { list-style: none; margin-top: 1.5rem; }
+  .service-features li {
+    font-size: 0.85rem; color: var(--muted); padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.6rem;
+  }
+  .service-features li::before { content: '→'; color: var(--accent); }
+
+  /* ── HOW IT WORKS ── */
+  .how-section { background: var(--card); }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+  .step { position: relative; }
+  .step-num {
+    font-family: 'Syne', sans-serif; font-size: 5rem;
+    font-weight: 800; color: var(--border); line-height: 1;
+    margin-bottom: 1rem; user-select: none;
+  }
+  .step-title { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 0.5rem; }
+  .step-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--accent); color: var(--white);
+    text-align: center; padding: 6rem 4rem;
+  }
+  .cta-section .section-title { color: var(--white); }
+  .cta-section p { color: rgba(255,255,255,0.8); max-width: 500px; margin: 0 auto 3rem; }
+  .btn-white {
+    background: var(--white); color: var(--accent);
+    padding: 1.1rem 3rem; font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 0.9rem; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    display: inline-block; transition: opacity 0.2s; margin: 0.5rem;
+  }
+  .btn-white:hover { opacity: 0.9; }
+  .btn-outline-white {
+    border: 2px solid rgba(255,255,255,0.5); color: var(--white);
+    padding: 1.1rem 3rem; font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 0.9rem; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    display: inline-block; transition: all 0.2s; margin: 0.5rem;
+  }
+  .btn-outline-white:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 3rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem;
+  }
+  footer .logo { font-size: 1rem; }
+  footer p { color: var(--muted); font-size: 0.8rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-tag, .hero h1, .hero p, .hero-btns, .hero-stats {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero h1    { animation-delay: 0.1s; }
+  .hero p     { animation-delay: 0.2s; }
+  .hero-btns  { animation-delay: 0.3s; }
+  .hero-stats { animation-delay: 0.4s; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    footer { flex-direction: column; text-align: center; }
+    .cta-section { padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Jack<span>.</span>B</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://www.fiverr.com/TUOUSERNAME" class="nav-cta" target="_blank">Hire me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">E-Commerce Growth Specialist · Florence, Italy</div>
+  <h1>Your products deserve to <em>sell.</em></h1>
+  <p>I optimize Amazon, Etsy and Shopify listings with SEO-driven copy and create social content packs that actually convert — delivered in 24 hours.</p>
+  <div class="hero-btns">
+    <a href="https://www.fiverr.com/TUOUSERNAME" class="btn-primary" target="_blank">Start a project →</a>
+    <a href="#services" class="btn-ghost">See services</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">24<span>h</span></div>
+      <div class="stat-label">Delivery time</div>
+    </div>
+    <div>
+      <div class="stat-num">3<span>x</span></div>
+      <div class="stat-label">Platforms covered</div>
+    </div>
+    <div>
+      <div class="stat-num">500<span>+</span></div>
+      <div class="stat-label">Products optimized</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-tag">What I offer</div>
+  <h2 class="section-title">Pick your package</h2>
+  <p class="section-sub">Every package includes a formatted Excel file ready to upload directly to your platform.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">📝</div>
+      <div class="service-name">Listing Optimizer</div>
+      <div class="service-desc">SEO-optimized titles, benefit-first bullet points, full descriptions and tags. Ready to upload to Amazon, Etsy or Shopify.</div>
+      <div class="service-price">From €25 <small>/ 10 products</small></div>
+      <ul class="service-features">
+        <li>SEO title with primary keyword</li>
+        <li>5 benefit-first bullet points</li>
+        <li>200-word product description</li>
+        <li>Meta description + 15 tags</li>
+        <li>Excel file, platform-ready</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📱</div>
+      <div class="service-name">Social Content Pack</div>
+      <div class="service-desc">Instagram captions, TikTok scripts and Pinterest content for every product. Post every day without writing a word.</div>
+      <div class="service-price">From €40 <small>/ 10 products</small></div>
+      <ul class="service-features">
+        <li>Instagram caption + 30 hashtags</li>
+        <li>Instagram Story text</li>
+        <li>TikTok hook + full 30s script</li>
+        <li>Pinterest title + description</li>
+        <li>Organized by platform</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚀</div>
+      <div class="service-name">Full Growth Pack</div>
+      <div class="service-desc">Both services combined. Get optimized listings AND a complete social content strategy for every single product.</div>
+      <div class="service-price">From €55 <small>/ 10 products</small></div>
+      <ul class="service-features">
+        <li>Everything in Listing Optimizer</li>
+        <li>Everything in Social Content</li>
+        <li>3 separate Excel files</li>
+        <li>Client instruction guide</li>
+        <li>Best value — save 20%</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="how-section">
+  <div class="section-tag">The process</div>
+  <h2 class="section-title">Simple as it gets</h2>
+  <p class="section-sub">No lengthy briefs. No back and forth. Just results.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Send your CSV</div>
+      <div class="step-desc">A simple spreadsheet with product name, basic specs and category. I'll send you a template after ordering.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">I get to work</div>
+      <div class="step-desc">I optimize every listing with SEO research and conversion copywriting. Quality checked before delivery.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">You receive Excel</div>
+      <div class="step-desc">A clean, formatted Excel file organized by platform. Ready to copy and paste directly into your store.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">You start selling</div>
+      <div class="step-desc">Better SEO means more visibility. Better copy means more conversions. That's the whole point.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-section">
+  <h2 class="section-title">Ready to grow?</h2>
+  <p>Send me a message with 5 sample products and I'll deliver optimized versions within 2 hours — completely free. No commitment needed.</p>
+  <a href="https://www.fiverr.com/JackBop" class="btn-white" target="_blank">Order on Fiverr</a>
+  <a href="https://www.upwork.com/freelancers/TUOUSERNAME" class="btn-outline-white" target="_blank">Find me on Upwork</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Jack<span>.</span>B</div>
+  <p>E-Commerce Growth Specialist · Florence, Italy</p>
+  <p style="color:#555">© 2026 Jack B. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
